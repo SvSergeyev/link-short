@@ -73,12 +73,21 @@
     copyButton.addEventListener('click', () => {
         if (!resultInput.disabled && resultInput.value.trim() !== '') {
             resultInput.select();
-            navigator.clipboard.writeText(resultInput.value).then(() => {
-                copyButton.classList.add('copied');
-                copyButton.textContent = 'Скопировано';
-            });
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    copyButton.classList.add('copied');
+                    copyButton.textContent = 'Скопировано';
+                } else {
+                    alert('Не удалось скопировать текст');
+                }
+            } catch (err) {
+                alert('Ошибка копирования: ' + err);
+            }
+            window.getSelection().removeAllRanges(); // Снять выделение
         }
     });
+
 </script>
 
 <footer>
