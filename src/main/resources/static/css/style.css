@@ -60,3 +60,10 @@ button:disabled {
     background-color: #28a745 !important;
     color: white;
 }
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #555;
+}
