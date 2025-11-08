@@ -1,5 +1,6 @@
 package tech.sergeyev.linkshort.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +23,9 @@ public class ShortLink {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter
     long id;
+    @Column(nullable = false, length = 3000)
     String url;
+    @Column(nullable = false, unique = true)
     String token;
     @CreatedDate
     LocalDateTime createdAt;
