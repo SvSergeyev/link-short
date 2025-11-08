@@ -1,6 +1,7 @@
 package tech.sergeyev.linkshort.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,14 @@ import java.util.NoSuchElementException;
 @Controller
 @RequiredArgsConstructor
 public class ShortLinkController {
+    @Value("${links.expirationDays}")
+    private int expirationDays;
+
     private final ShortLinkService shortLinkService;
 
     @GetMapping("/")
     public String index(Model model) {
+        model.addAttribute("expirationDays", expirationDays);
         return "index";
     }
 

@@ -31,6 +31,11 @@
             return;
         }
 
+        if (url.length >= 3000) {
+            alert('Не более 3000 символов');
+            return;
+        }
+
         shortenButton.disabled = true;
         copyButton.classList.remove('copied');
         copyButton.textContent = 'Скопировать';
@@ -76,5 +81,8 @@
     });
 </script>
 
+<footer>
+    <p>Ссылки действительны <span th:text="${expirationDays}">x</span> дней</p>
+</footer>
 </body>
 </html>
